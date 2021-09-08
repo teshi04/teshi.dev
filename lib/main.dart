@@ -27,18 +27,53 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Scene _scene;
+  late Object _usagi;
+  double _ambient = 0.1;
+  double _diffuse = 0.8;
+  double _specular = 0.5;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Cube(
           onSceneCreated: (Scene scene) {
-            scene.camera.zoom = 5;
-            scene.world.add(Object(fileName: 'usagi.obj'));
+            _scene = scene;
+            scene.camera.position.z = 10;
+            scene.light.position.setFrom(Vector3(0, 10, 10));
+            scene.light.setColor(Colors.white, _ambient, _diffuse, _specular);
+            _usagi = Object(
+                position: Vector3(0, -1.0, 0),
+                scale: Vector3(10.0, 10.0, 10.0),
+                lighting: true,
+                fileName: 'usagi_v1.obj');
+            scene.world.add(_usagi);
           },
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _controller =
+        AnimationController(duration: Duration(seconds: 10), vsync: this)
+          ..addListener(() {
+            _usagi.rotation.y = _controller.value * 360;
+            _usagi.updateTransform();
+            _scene.update();
+          })
+          ..repeat();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }
