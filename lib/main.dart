@@ -9,32 +9,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      title: 'teshi.dev',
+      home: TopPage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
+class TopPage extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _TopPageState createState() => _TopPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage>
-    with SingleTickerProviderStateMixin {
+class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
+  final double _ambient = 0.1;
+  final double _diffuse = 0.8;
+  final double _specular = 0.5;
+
   late AnimationController _controller;
   late Scene _scene;
   late Object _usagi;
-  double _ambient = 0.1;
-  double _diffuse = 0.8;
-  double _specular = 0.5;
 
   @override
   Widget build(BuildContext context) {
