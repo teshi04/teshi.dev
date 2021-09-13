@@ -4,6 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'data/url.dart';
+
 class TopPage extends StatefulWidget {
   @override
   _TopPageState createState() => _TopPageState();
@@ -71,65 +73,24 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
                       style: TextStyle(fontSize: 20),
                     ),
                     Gap(32),
-                    InkWell(
-                        child: Text(
-                          'GitHub',
-                          style: TextStyle(
-                              fontSize: 18,
-                              decoration: TextDecoration.underline),
-                        ),
-                        onTap: () async {
-                          await launch(
-                            'https://github.com/teshi04',
-                          );
-                        }),
-                    InkWell(
-                        child: Text(
-                          'Twitter',
-                          style: TextStyle(
-                              fontSize: 18,
-                              decoration: TextDecoration.underline),
-                        ),
-                        onTap: () async {
-                          await launch(
-                            'https://github.com/teshi04',
-                          );
-                        }),
-                    InkWell(
-                        child: Text(
-                          'Note',
-                          style: TextStyle(
-                              fontSize: 18,
-                              decoration: TextDecoration.underline),
-                        ),
-                        onTap: () async {
-                          await launch(
-                            'https://github.com/teshi04',
-                          );
-                        }),
-                    InkWell(
-                        child: Text(
-                          'Blog',
-                          style: TextStyle(
-                              fontSize: 18,
-                              decoration: TextDecoration.underline),
-                        ),
-                        onTap: () async {
-                          await launch(
-                            'https://github.com/teshi04',
-                          );
-                        }),
-                    InkWell(
-                        child: Text(
-                          'Scrapbox',
-                          style: TextStyle(
-                              fontSize: 18,
-                              decoration: TextDecoration.underline),
-                        ),
-                        onTap: () async {
-                          await launch(
-                            'https://github.com/teshi04',
-                          );
+                    ListView.builder(
+                        itemCount: items.length,
+                        shrinkWrap: true,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                              padding: EdgeInsets.all(4),
+                              child: InkWell(
+                                  child: Text(
+                                    items[index]['title'] ?? '',
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        decoration: TextDecoration.underline),
+                                  ),
+                                  onTap: () async {
+                                    await launch(
+                                      items[index]['url'] ?? '',
+                                    );
+                                  }));
                         }),
                     Gap(32),
                     ClipRRect(
@@ -144,16 +105,16 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
                             children: [
                               Image.asset(
                                 'assets/suzuri.jpg',
-                                width: 250,
+                                width: 160,
                                 color: Colors.black.withOpacity(0.2),
                                 colorBlendMode: BlendMode.srcOver,
                               ),
                               Container(
                                 margin: EdgeInsets.all(16),
                                 child: Text(
-                                  'ウサ木',
+                                  'ウサ木グッズ',
                                   style: TextStyle(
-                                      fontSize: 24, color: Colors.white),
+                                      fontSize: 18, color: Colors.white),
                                 ),
                               )
                             ],
