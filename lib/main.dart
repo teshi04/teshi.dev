@@ -42,141 +42,145 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
         body: Stack(
       children: [
         buildCube(),
-        SingleChildScrollView(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Container(height: 600),
-            Container(
-              padding: EdgeInsets.all(32),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(32), bottom: Radius.zero),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(children: [
-                        Text(
-                          'teshi04',
-                          style: TextStyle(fontSize: 32),
-                          textAlign: TextAlign.left,
+        ConstrainedBox(
+            constraints: BoxConstraints.expand(),
+            child: SingleChildScrollView(
+              child: Container(
+                margin: EdgeInsets.only(top: screenHeight * 0.6),
+                padding: EdgeInsets.all(32),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(32), bottom: Radius.zero),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(children: [
+                          Text(
+                            'teshi04',
+                            style: TextStyle(fontSize: 32),
+                            textAlign: TextAlign.left,
+                          ),
+                          Text(
+                            'Yui Matsuura',
+                            style: TextStyle(fontSize: 20, color: Colors.grey),
+                          ),
+                        ]),
+                        SvgPicture.asset(
+                          'assets/icon.svg',
+                          width: 100,
+                          height: 100,
+                        )
+                      ],
+                    ),
+                    Gap(24),
+                    Text(
+                      'お客さまに価値を届けるオアダイ',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    Gap(32),
+                    InkWell(
+                        child: Text(
+                          'GitHub',
+                          style: TextStyle(
+                              fontSize: 18,
+                              decoration: TextDecoration.underline),
                         ),
-                        Text(
-                          'Yui Matsuura',
-                          style: TextStyle(fontSize: 20, color: Colors.grey),
-                        ),
-                      ]),
-                      SvgPicture.asset(
-                        'icon.svg',
-                        width: 100,
-                        height: 100,
-                      )
-                    ],
-                  ),
-                  Gap(24),
-                  Text(
-                    'お客さまに価値を届けるオアダイ',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  Gap(32),
-                  InkWell(
-                      child: Text(
-                        'GitHub',
-                        style: TextStyle(
-                            fontSize: 18, decoration: TextDecoration.underline),
-                      ),
-                      onTap: () async {
-                        await launch(
-                          'https://github.com/teshi04',
-                        );
-                      }),
-                  InkWell(
-                      child: Text(
-                        'Twitter',
-                        style: TextStyle(
-                            fontSize: 18, decoration: TextDecoration.underline),
-                      ),
-                      onTap: () async {
-                        await launch(
-                          'https://github.com/teshi04',
-                        );
-                      }),
-                  InkWell(
-                      child: Text(
-                        'Note',
-                        style: TextStyle(
-                            fontSize: 18, decoration: TextDecoration.underline),
-                      ),
-                      onTap: () async {
-                        await launch(
-                          'https://github.com/teshi04',
-                        );
-                      }),
-                  InkWell(
-                      child: Text(
-                        'Blog',
-                        style: TextStyle(
-                            fontSize: 18, decoration: TextDecoration.underline),
-                      ),
-                      onTap: () async {
-                        await launch(
-                          'https://github.com/teshi04',
-                        );
-                      }),
-                  InkWell(
-                      child: Text(
-                        'Scrapbox',
-                        style: TextStyle(
-                            fontSize: 18, decoration: TextDecoration.underline),
-                      ),
-                      onTap: () async {
-                        await launch(
-                          'https://github.com/teshi04',
-                        );
-                      }),
-                  Gap(32),
-                  ClipRRect(
-                      borderRadius: BorderRadius.circular(16),
-                      child: InkWell(
                         onTap: () async {
                           await launch(
-                            'https://suzuri.jp/teshi04',
+                            'https://github.com/teshi04',
                           );
-                        },
-                        child: Stack(
-                          children: [
-                            Image.asset(
-                              'suzuri.jpg',
-                              width: 250,
-                              color: Colors.black.withOpacity(0.2),
-                              colorBlendMode: BlendMode.srcOver,
-                            ),
-                            Container(
-                              margin: EdgeInsets.all(16),
-                              child: Text(
-                                'ウサ木',
-                                style: TextStyle(
-                                    fontSize: 24, color: Colors.white),
-                              ),
-                            )
-                          ],
+                        }),
+                    InkWell(
+                        child: Text(
+                          'Twitter',
+                          style: TextStyle(
+                              fontSize: 18,
+                              decoration: TextDecoration.underline),
                         ),
-                      ))
-                ],
+                        onTap: () async {
+                          await launch(
+                            'https://github.com/teshi04',
+                          );
+                        }),
+                    InkWell(
+                        child: Text(
+                          'Note',
+                          style: TextStyle(
+                              fontSize: 18,
+                              decoration: TextDecoration.underline),
+                        ),
+                        onTap: () async {
+                          await launch(
+                            'https://github.com/teshi04',
+                          );
+                        }),
+                    InkWell(
+                        child: Text(
+                          'Blog',
+                          style: TextStyle(
+                              fontSize: 18,
+                              decoration: TextDecoration.underline),
+                        ),
+                        onTap: () async {
+                          await launch(
+                            'https://github.com/teshi04',
+                          );
+                        }),
+                    InkWell(
+                        child: Text(
+                          'Scrapbox',
+                          style: TextStyle(
+                              fontSize: 18,
+                              decoration: TextDecoration.underline),
+                        ),
+                        onTap: () async {
+                          await launch(
+                            'https://github.com/teshi04',
+                          );
+                        }),
+                    Gap(32),
+                    ClipRRect(
+                        borderRadius: BorderRadius.circular(16),
+                        child: InkWell(
+                          onTap: () async {
+                            await launch(
+                              'https://suzuri.jp/teshi04',
+                            );
+                          },
+                          child: Stack(
+                            children: [
+                              Image.asset(
+                                'assets/suzuri.jpg',
+                                width: 250,
+                                color: Colors.black.withOpacity(0.2),
+                                colorBlendMode: BlendMode.srcOver,
+                              ),
+                              Container(
+                                margin: EdgeInsets.all(16),
+                                child: Text(
+                                  'ウサ木',
+                                  style: TextStyle(
+                                      fontSize: 24, color: Colors.white),
+                                ),
+                              )
+                            ],
+                          ),
+                        ))
+                  ],
+                ),
               ),
-            ),
-          ],
-        ))
+            ))
       ],
     ));
   }
@@ -212,7 +216,7 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
             position: Vector3(0, -1.0, 0),
             scale: Vector3(10.0, 10.0, 10.0),
             lighting: true,
-            fileName: 'usagi_v1.obj');
+            fileName: 'assets/usagi_v1.obj');
         scene.world.add(_usagi);
       },
     );
