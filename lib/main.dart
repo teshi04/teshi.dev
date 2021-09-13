@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_cube/flutter_cube.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:site2021/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void main() {
@@ -15,12 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'teshi.dev',
-      theme: ThemeData(
-          scaffoldBackgroundColor: Colors.teal[500],
-          cardTheme: CardTheme(
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16)))),
+      theme: AppTheme.theme,
       home: TopPage(),
     );
   }
