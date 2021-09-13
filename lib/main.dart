@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:site2021/pages/index.dart';
-import 'package:site2021/theme.dart';
+import 'package:teshi_dev/pages/index.dart';
+import 'package:teshi_dev/theme.dart';
 
 void main() {
   runApp(MyApp());
