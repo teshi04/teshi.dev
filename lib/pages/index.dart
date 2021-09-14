@@ -12,9 +12,6 @@ class TopPage extends StatefulWidget {
 }
 
 class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
-  final double _ambient = 0.1;
-  final double _diffuse = 0.8;
-  final double _specular = 0.5;
   final Object _usagi = Object(
       position: Vector3(0, -1.0, 0),
       scale: Vector3(10.0, 10.0, 10.0),
@@ -45,82 +42,7 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(children: [
-                          Text(
-                            'teshi04',
-                            style: TextStyle(fontSize: 32),
-                            textAlign: TextAlign.left,
-                          ),
-                          Text(
-                            'Yui Matsuura',
-                            style: TextStyle(fontSize: 20, color: Colors.grey),
-                          ),
-                        ]),
-                        SvgPicture.asset(
-                          'assets/icon.svg',
-                          width: 100,
-                          height: 100,
-                        )
-                      ],
-                    ),
-                    Gap(24),
-                    Text(
-                      'お客さまに価値を届けるオアダイ',
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    Gap(32),
-                    ListView.builder(
-                        itemCount: items.length,
-                        shrinkWrap: true,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Padding(
-                              padding: EdgeInsets.all(4),
-                              child: InkWell(
-                                  child: Text(
-                                    items[index]['title'] ?? '',
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        decoration: TextDecoration.underline),
-                                  ),
-                                  onTap: () async {
-                                    await launch(
-                                      items[index]['url'] ?? '',
-                                    );
-                                  }));
-                        }),
-                    Gap(32),
-                    ClipRRect(
-                        borderRadius: BorderRadius.circular(16),
-                        child: InkWell(
-                          onTap: () async {
-                            await launch(
-                              'https://suzuri.jp/teshi04',
-                            );
-                          },
-                          child: Stack(
-                            children: [
-                              Image.asset(
-                                'assets/suzuri.jpg',
-                                width: 160,
-                                color: Colors.black.withOpacity(0.2),
-                                colorBlendMode: BlendMode.srcOver,
-                              ),
-                              Container(
-                                margin: EdgeInsets.all(16),
-                                child: Text(
-                                  'ウサ木グッズ',
-                                  style: TextStyle(
-                                      fontSize: 18, color: Colors.white),
-                                ),
-                              )
-                            ],
-                          ),
-                        ))
-                  ],
+                  children: buildProfile(),
                 ),
               ),
             ))
@@ -147,7 +69,90 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
+  List<Widget> buildProfile() {
+    return [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(children: [
+            Text(
+              'teshi04',
+              style: TextStyle(fontSize: 32),
+              textAlign: TextAlign.left,
+            ),
+            Text(
+              'Yui Matsuura',
+              style: TextStyle(fontSize: 20, color: Colors.grey),
+            ),
+          ]),
+          SvgPicture.asset(
+            'assets/icon.svg',
+            width: 100,
+            height: 100,
+          )
+        ],
+      ),
+      Gap(24),
+      Text(
+        'お客さまに価値を届けるオアダイ',
+        style: TextStyle(fontSize: 20),
+      ),
+      Gap(32),
+      Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: items
+              .map((item) => Padding(
+                  padding: EdgeInsets.all(4),
+                  child: InkWell(
+                      child: Text(
+                        item['title'] ?? '',
+                        style: TextStyle(
+                            fontSize: 18, decoration: TextDecoration.underline),
+                      ),
+                      onTap: () async {
+                        await launch(
+                          item['url'] ?? '',
+                        );
+                      })))
+              .toList()),
+      Gap(32),
+      buildCard()
+    ];
+  }
+
+  Widget buildCard() {
+    return ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: InkWell(
+          child: Stack(
+            children: [
+              Image.asset(
+                'assets/suzuri.jpg',
+                width: 160,
+                color: Colors.black.withOpacity(0.2),
+                colorBlendMode: BlendMode.srcOver,
+              ),
+              Container(
+                margin: EdgeInsets.all(16),
+                child: Text(
+                  'ウサ木グッズ',
+                  style: TextStyle(fontSize: 18, color: Colors.white),
+                ),
+              )
+            ],
+          ),
+          onTap: () async {
+            await launch(
+              'https://suzuri.jp/teshi04',
+            );
+          },
+        ));
+  }
+
   Widget buildCube() {
+    final double _ambient = 0.1;
+    final double _diffuse = 0.8;
+    final double _specular = 0.5;
     return Cube(
       interactive: false,
       onSceneCreated: (Scene scene) {
