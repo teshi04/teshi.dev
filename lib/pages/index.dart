@@ -23,29 +23,29 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
         body: Stack(
       children: [
-        buildCube(),
-        ConstrainedBox(
-            constraints: BoxConstraints.expand(),
-            child: SingleChildScrollView(
-              child: Container(
-                margin: EdgeInsets.only(top: screenHeight * 0.6),
-                padding: EdgeInsets.all(32),
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.vertical(
-                      top: Radius.circular(32), bottom: Radius.zero),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: buildProfile(),
-                ),
+        _buildCube(),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Center(
+                child: FloatingActionButton(
+              elevation: 0,
+              highlightElevation: 0,
+              hoverElevation: 0,
+              child: Icon(
+                Icons.search,
+                size: 30,
               ),
-            ))
+              onPressed: () {
+                _openBottomSheet();
+              },
+            )),
+            Gap(36)
+          ],
+        ),
       ],
     ));
   }
@@ -61,6 +61,9 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
             _scene?.update();
           })
           ..repeat();
+
+    Future.delayed(Duration(milliseconds: 100))
+        .then((value) => _openBottomSheet());
   }
 
   @override
@@ -69,16 +72,37 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
-  List<Widget> buildProfile() {
+  void _openBottomSheet() {
+    showModalBottomSheet(
+        context: context,
+        barrierColor: Colors.black.withOpacity(0.4),
+        isScrollControlled: true,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(32))),
+        builder: (context) {
+          return DraggableScrollableSheet(
+            maxChildSize: 0.9,
+            expand: false,
+            builder: (context, scrollController) {
+              return ListView(
+                padding: EdgeInsets.all(32),
+                controller: scrollController,
+                children: _buildContents(),
+              );
+            },
+          );
+        });
+  }
+
+  List<Widget> _buildContents() {
     return [
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(children: [
+          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(
               'teshi04',
               style: TextStyle(fontSize: 32),
-              textAlign: TextAlign.left,
             ),
             Text(
               'Yui Matsuura',
@@ -102,7 +126,7 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: items
               .map((item) => Padding(
-                  padding: EdgeInsets.all(4),
+                  padding: EdgeInsets.all(6),
                   child: InkWell(
                       child: Text(
                         item['title'] ?? '',
@@ -116,13 +140,13 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
                       })))
               .toList()),
       Gap(32),
-      buildCard()
+      _buildCard()
     ];
   }
 
-  Widget buildCard() {
+  Widget _buildCard() {
     return ClipRRect(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(32),
         child: InkWell(
           child: Stack(
             children: [
@@ -149,12 +173,11 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
         ));
   }
 
-  Widget buildCube() {
+  Widget _buildCube() {
     final double _ambient = 0.1;
     final double _diffuse = 0.8;
     final double _specular = 0.5;
     return Cube(
-      interactive: false,
       onSceneCreated: (Scene scene) {
         _scene = scene;
         scene.camera.position.z = 10;
