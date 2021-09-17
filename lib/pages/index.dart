@@ -106,11 +106,11 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
             ),
             Text(
               'Yui Matsuura',
-              style: TextStyle(fontSize: 20, color: Colors.grey),
+              style: TextStyle(fontSize: 20, color: Colors.grey[600]),
             ),
           ]),
           SvgPicture.asset(
-            'assets/icon.svg',
+            'assets/nekouo.svg',
             width: 100,
             height: 100,
           )
@@ -173,7 +173,7 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
   }
 
   Widget _buildCube() {
-    final double _ambient = 0.1;
+    final double _ambient = 0.4;
     final double _diffuse = 0.8;
     final double _specular = 0.5;
     return Cube(
