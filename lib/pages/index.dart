@@ -36,7 +36,7 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
               highlightElevation: 0,
               hoverElevation: 0,
               child: Icon(
-                Icons.search,
+                Icons.keyboard_arrow_up_rounded,
                 size: 30,
               ),
               onPressed: () {
