@@ -140,36 +140,35 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
                       })))
               .toList()),
       Gap(32),
-      _buildCard()
+      Row(children: [_buildCard()])
     ];
   }
 
   Widget _buildCard() {
-    return ClipRRect(
-        borderRadius: BorderRadius.circular(32),
-        child: InkWell(
-          child: Stack(
-            children: [
-              Image.asset(
-                'assets/suzuri.jpg',
+    return Card(
+        clipBehavior: Clip.hardEdge,
+        child: Stack(
+          children: [
+            Ink.image(
                 width: 160,
-                color: Colors.black.withOpacity(0.2),
-                colorBlendMode: BlendMode.srcOver,
+                height: 160,
+                fit: BoxFit.cover,
+                image: AssetImage('assets/suzuri.png'),
+                child: InkWell(
+                  onTap: () async {
+                    await launch(
+                      'https://suzuri.jp/teshi04',
+                    );
+                  },
+                )),
+            Container(
+              margin: EdgeInsets.all(16),
+              child: Text(
+                'ウサ木グッズ',
+                style: TextStyle(fontSize: 18, color: Colors.white),
               ),
-              Container(
-                margin: EdgeInsets.all(16),
-                child: Text(
-                  'ウサ木グッズ',
-                  style: TextStyle(fontSize: 18, color: Colors.white),
-                ),
-              )
-            ],
-          ),
-          onTap: () async {
-            await launch(
-              'https://suzuri.jp/teshi04',
-            );
-          },
+            )
+          ],
         ));
   }
 
