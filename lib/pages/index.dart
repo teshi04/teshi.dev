@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cube/flutter_cube.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -26,9 +27,10 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
     return Scaffold(
         body: Stack(
       children: [
-        Text('お客さまに価値を届けるオアダイ',
+        AutoSizeText('お客さまに価値を届けるオアダイ',
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 300, fontFamily: 'RampartOne')),
+            style: TextStyle(fontSize: 300, fontFamily: 'RampartOne'),
+            maxLines: 3),
         _buildCube(),
         Column(
           mainAxisAlignment: MainAxisAlignment.end,
