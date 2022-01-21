@@ -121,7 +121,7 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
           )
         ],
       ),
-      Gap(32),
+      Gap(16),
       Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: items
