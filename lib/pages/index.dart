@@ -26,6 +26,9 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
     return Scaffold(
         body: Stack(
       children: [
+        Text('お客さまに価値を届けるオアダイ',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 300, fontFamily: 'RampartOne')),
         _buildCube(),
         Column(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -116,11 +119,6 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
           )
         ],
       ),
-      Gap(24),
-      Text(
-        'お客さまに価値を届けるオアダイ',
-        style: TextStyle(fontSize: 20),
-      ),
       Gap(32),
       Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -164,8 +162,11 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
             Container(
               margin: EdgeInsets.all(16),
               child: Text(
-                'ウサ木グッズ',
-                style: TextStyle(fontSize: 18, color: Colors.white),
+                'ウサ木',
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontFamily: 'SawarabiMincho'),
               ),
             )
           ],
