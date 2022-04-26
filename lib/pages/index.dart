@@ -134,8 +134,8 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
                             fontSize: 18, decoration: TextDecoration.underline),
                       ),
                       onTap: () async {
-                        await launch(
-                          item['url'] ?? '',
+                        await launchUrl(
+                          Uri.parse(item['url'] ?? ''),
                         );
                       })))
               .toList()),
@@ -156,9 +156,7 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
                 image: AssetImage('assets/suzuri.png'),
                 child: InkWell(
                   onTap: () async {
-                    await launch(
-                      'https://suzuri.jp/teshi04',
-                    );
+                    await launchUrl(Uri.parse('https://suzuri.jp/teshi04'));
                   },
                 )),
             Container(

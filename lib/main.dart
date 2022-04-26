@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:teshi_dev/pages/index.dart';
 import 'package:teshi_dev/theme.dart';
 
