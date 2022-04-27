@@ -180,7 +180,7 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
     return Cube(
       onSceneCreated: (Scene scene) {
         _scene = scene;
-        scene.camera.position.z = 10;
+        scene.camera.position.z = 15;
         scene.light.position.setFrom(Vector3(0, 10, 10));
         scene.light.setColor(Colors.white, _ambient, _diffuse, _specular);
         scene.world.add(_model);
