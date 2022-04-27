@@ -13,11 +13,11 @@ class TopPage extends StatefulWidget {
 }
 
 class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
-  final Object _usagi = Object(
+  final Object _model = Object(
       position: Vector3(0, -1.0, 0),
       scale: Vector3(10.0, 10.0, 10.0),
       lighting: true,
-      fileName: 'assets/usagi_v1.obj');
+      fileName: 'assets/nekouo.obj');
 
   late AnimationController _controller;
   Scene? _scene;
@@ -61,8 +61,8 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
     _controller =
         AnimationController(duration: Duration(seconds: 10), vsync: this)
           ..addListener(() {
-            _usagi.rotation.y = _controller.value * 360;
-            _usagi.updateTransform();
+            _model.rotation.y = _controller.value * 360;
+            _model.updateTransform();
             _scene?.update();
           })
           ..repeat();
@@ -180,10 +180,10 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
     return Cube(
       onSceneCreated: (Scene scene) {
         _scene = scene;
-        scene.camera.position.z = 10;
+        scene.camera.position.z = 15;
         scene.light.position.setFrom(Vector3(0, 10, 10));
         scene.light.setColor(Colors.white, _ambient, _diffuse, _specular);
-        scene.world.add(_usagi);
+        scene.world.add(_model);
       },
     );
   }
