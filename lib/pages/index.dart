@@ -27,7 +27,7 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
     return Scaffold(
         body: Stack(
       children: [
-        AutoSizeText('お客さまに価値を届けるオアダイ',
+        AutoSizeText('お客様に価値を届けるオアダイ',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 300, fontFamily: 'RampartOne'),
             maxLines: 3),
