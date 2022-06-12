@@ -15,6 +15,7 @@ class TopPage extends StatefulWidget {
 class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
   final Object _model = Object(
       position: Vector3(0, -1.0, 0),
+      rotation: Vector3(0, -90.0, 0.0),
       scale: Vector3(10.0, 10.0, 10.0),
       lighting: true,
       fileName: 'assets/nekouo.obj');
@@ -58,14 +59,15 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _controller =
-        AnimationController(duration: Duration(seconds: 10), vsync: this)
-          ..addListener(() {
-            _model.rotation.y = _controller.value * 360;
-            _model.updateTransform();
-            _scene?.update();
-          })
-          ..repeat();
+    _controller = AnimationController(
+        value: 0.5, duration: Duration(seconds: 10), vsync: this)
+      ..addListener(() {
+        print(_controller.value);
+        _model.rotation.y = _controller.value * 360;
+        _model.updateTransform();
+        _scene?.update();
+      })
+      ..repeat();
 
     Future.delayed(Duration(milliseconds: 100))
         .then((value) => _openBottomSheet());
@@ -174,15 +176,15 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
   }
 
   Widget _buildCube() {
-    final double _ambient = 0.4;
-    final double _diffuse = 0.8;
-    final double _specular = 0.5;
+    final ambient = 0.4;
+    final diffuse = 0.8;
+    final specular = 0.5;
     return Cube(
       onSceneCreated: (Scene scene) {
         _scene = scene;
         scene.camera.position.z = 15;
         scene.light.position.setFrom(Vector3(0, 10, 10));
-        scene.light.setColor(Colors.white, _ambient, _diffuse, _specular);
+        scene.light.setColor(Colors.white, ambient, diffuse, specular);
         scene.world.add(_model);
       },
     );
