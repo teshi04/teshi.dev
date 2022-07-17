@@ -62,7 +62,6 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
     _controller = AnimationController(
         value: 0.5, duration: Duration(seconds: 10), vsync: this)
       ..addListener(() {
-        print(_controller.value);
         _model.rotation.y = _controller.value * 360;
         _model.updateTransform();
         _scene?.update();
@@ -128,7 +127,7 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: items
               .map((item) => Padding(
-                  padding: EdgeInsets.all(6),
+                  padding: EdgeInsets.all(8),
                   child: InkWell(
                       child: Text(
                         item['title'] ?? '',
