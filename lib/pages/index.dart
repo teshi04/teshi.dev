@@ -153,25 +153,34 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
             .toList(),
       ),
       Gap(32),
-      Row(children: [_buildCard()])
+      Row(children: [
+        _buildCard(),
+      ])
     ];
   }
 
   Widget _buildCard() {
+    final suzuriUrl = 'https://suzuri.jp/teshi04';
     return Card(
         clipBehavior: Clip.hardEdge,
         child: Stack(
           children: [
-            Ink.image(
-                width: 160,
-                height: 160,
-                fit: BoxFit.cover,
-                image: AssetImage('assets/suzuri.png'),
-                child: InkWell(
-                  onTap: () async {
-                    await launchUrl(Uri.parse('https://suzuri.jp/teshi04'));
-                  },
-                )),
+            Tooltip(
+              message: suzuriUrl,
+              child: InkWell(
+                child: Ink.image(
+                  width: 160,
+                  height: 160,
+                  fit: BoxFit.cover,
+                  image: AssetImage('assets/suzuri.png'),
+                  child: InkWell(
+                    onTap: () async {
+                      await launchUrl(Uri.parse(suzuriUrl));
+                    },
+                  ),
+                ),
+              ),
+            ),
             Container(
               margin: EdgeInsets.all(16),
               child: Text(
