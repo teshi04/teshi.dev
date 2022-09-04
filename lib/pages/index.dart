@@ -127,18 +127,27 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: items
               .map((item) => Padding(
-                  padding: EdgeInsets.all(8),
-                  child: InkWell(
-                      child: Text(
-                        item['title'] ?? '',
-                        style: TextStyle(
-                            fontSize: 18, decoration: TextDecoration.underline),
+                    padding: EdgeInsets.all(12),
+                    child: Tooltip(
+                      message: item['url'],
+                      margin: const EdgeInsets.only(left: 36),
+                      verticalOffset: 11,
+                      child: InkWell(
+                        child: Text(
+                          item['title'] ?? '',
+                          style: TextStyle(
+                            fontSize: 18,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                        onTap: () async {
+                          await launchUrl(
+                            Uri.parse(item['url'] ?? ''),
+                          );
+                        },
                       ),
-                      onTap: () async {
-                        await launchUrl(
-                          Uri.parse(item['url'] ?? ''),
-                        );
-                      })))
+                    ),
+                  ))
               .toList()),
       Gap(32),
       Row(children: [_buildCard()])
