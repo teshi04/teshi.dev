@@ -14,11 +14,12 @@ class TopPage extends StatefulWidget {
 
 class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
   final Object _model = Object(
-      position: Vector3(0, -1.0, 0),
-      rotation: Vector3(0, -90.0, 0.0),
-      scale: Vector3(10.0, 10.0, 10.0),
-      lighting: true,
-      fileName: 'assets/nekouo.obj');
+    position: Vector3(0, -1.0, 0),
+    rotation: Vector3(0, -90.0, 0.0),
+    scale: Vector3(10.0, 10.0, 10.0),
+    lighting: true,
+    fileName: 'assets/nekouo.obj',
+  );
 
   late AnimationController _controller;
   Scene? _scene;
@@ -28,27 +29,30 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
     return Scaffold(
         body: Stack(
       children: [
-        AutoSizeText('お客様に価値を届けるオアダイ',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 300, fontFamily: 'RampartOne'),
-            maxLines: 3),
+        AutoSizeText(
+          'お客様に価値を届けるオアダイ',
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 300, fontFamily: 'RampartOne'),
+          maxLines: 3,
+        ),
         _buildCube(),
         Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Center(
-                child: FloatingActionButton(
-              elevation: 0,
-              highlightElevation: 0,
-              hoverElevation: 0,
-              child: Icon(
-                Icons.keyboard_arrow_up_rounded,
-                size: 30,
+              child: FloatingActionButton(
+                elevation: 0,
+                highlightElevation: 0,
+                hoverElevation: 0,
+                child: Icon(
+                  Icons.keyboard_arrow_up_rounded,
+                  size: 30,
+                ),
+                onPressed: () {
+                  _openBottomSheet();
+                },
               ),
-              onPressed: () {
-                _openBottomSheet();
-              },
-            )),
+            ),
             Gap(36)
           ],
         ),
@@ -124,31 +128,30 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
       ),
       Gap(16),
       Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: items
-              .map((item) => Padding(
-                    padding: EdgeInsets.all(12),
-                    child: Tooltip(
-                      message: item['url'],
-                      margin: const EdgeInsets.only(left: 36),
-                      verticalOffset: 11,
-                      child: InkWell(
-                        child: Text(
-                          item['title'] ?? '',
-                          style: TextStyle(
-                            fontSize: 18,
-                            decoration: TextDecoration.underline,
-                          ),
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: items
+            .map((item) => Padding(
+                  padding: EdgeInsets.all(12),
+                  child: Tooltip(
+                    message: item['url'],
+                    margin: const EdgeInsets.only(left: 36),
+                    verticalOffset: 11,
+                    child: InkWell(
+                      child: Text(
+                        item['title'] ?? '',
+                        style: TextStyle(
+                          fontSize: 18,
+                          decoration: TextDecoration.underline,
                         ),
-                        onTap: () async {
-                          await launchUrl(
-                            Uri.parse(item['url'] ?? ''),
-                          );
-                        },
                       ),
+                      onTap: () async {
+                        await launchUrl(Uri.parse(item['url'] ?? ''));
+                      },
                     ),
-                  ))
-              .toList()),
+                  ),
+                ))
+            .toList(),
+      ),
       Gap(32),
       Row(children: [_buildCard()])
     ];
