@@ -119,10 +119,12 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
               style: TextStyle(fontSize: 20, color: Colors.grey[600]),
             ),
           ]),
-          SvgPicture.asset(
-            'assets/nekouo.svg',
-            width: 100,
-            height: 100,
+          CircleAvatar(
+            backgroundColor: Colors.teal[200],
+            radius: 50,
+            child: SvgPicture.asset(
+              'assets/nekouo.svg',
+            ),
           )
         ],
       ),
