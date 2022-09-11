@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_cube/flutter_cube.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:teshi_dev/app_color.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'data/url.dart';
@@ -119,10 +120,12 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
               style: TextStyle(fontSize: 20, color: Colors.grey[600]),
             ),
           ]),
-          SvgPicture.asset(
-            'assets/nekouo.svg',
-            width: 100,
-            height: 100,
+          CircleAvatar(
+            backgroundColor: AppColors.primaryColor,
+            radius: 50,
+            child: SvgPicture.asset(
+              'assets/nekouo.svg',
+            ),
           )
         ],
       ),
