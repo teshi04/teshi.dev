@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:teshi_dev/app_color.dart';
 
 class AppTheme {
   static ThemeData get theme {
     return ThemeData(
-        scaffoldBackgroundColor: Colors.teal[200],
+        scaffoldBackgroundColor: AppColors.primaryColor,
         cardTheme: CardTheme(
             elevation: 0,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16))),
-        colorScheme:
-            ColorScheme.fromSwatch().copyWith(secondary: Colors.teal[500]));
+        colorScheme: ColorScheme.fromSwatch()
+            .copyWith(secondary: AppColors.secondaryColor));
   }
 }

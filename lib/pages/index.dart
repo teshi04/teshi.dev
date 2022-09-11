@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_cube/flutter_cube.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:teshi_dev/app_color.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'data/url.dart';
@@ -120,7 +121,7 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
             ),
           ]),
           CircleAvatar(
-            backgroundColor: Colors.teal[200],
+            backgroundColor: AppColors.primaryColor,
             radius: 50,
             child: SvgPicture.asset(
               'assets/nekouo.svg',
