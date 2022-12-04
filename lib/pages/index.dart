@@ -144,7 +144,6 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
                         item['title'] ?? '',
                         style: TextStyle(
                           fontSize: 18,
-                          decoration: TextDecoration.underline,
                         ),
                       ),
                       onTap: () async {
