@@ -140,11 +140,23 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
                     margin: const EdgeInsets.only(left: 36),
                     verticalOffset: 11,
                     child: InkWell(
-                      child: Text(
-                        item['title'] ?? '',
-                        style: TextStyle(
-                          fontSize: 18,
-                        ),
+                      child: Row(
+                        children: [
+                          Text(
+                            item['emoji'] ?? '',
+                            style: TextStyle(
+                                fontSize: 18, fontFamily: 'NotoColorEmoji'),
+                          ),
+                          SizedBox(
+                            width: 8,
+                          ),
+                          Text(
+                            item['title'] ?? '',
+                            style: TextStyle(
+                              fontSize: 18,
+                            ),
+                          ),
+                        ],
                       ),
                       onTap: () async {
                         await launchUrl(Uri.parse(item['url'] ?? ''));
