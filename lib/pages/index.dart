@@ -202,7 +202,7 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
                 style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,
-                    fontFamily: 'MPLUS1Rounded1c'),
+                    fontFamily: 'MPLUSRounded1c'),
               ),
             )
           ],

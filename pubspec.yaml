@@ -52,9 +52,9 @@ flutter:
     - family: RampartOne
       fonts:
         - asset: assets/fonts/RampartOne-Regular.ttf
-    - family: SawarabiMincho
+    - family: MPLUSRounded1c
       fonts:
-        - asset: assets/fonts/SawarabiMincho-Regular.ttf
+        - asset: assets/fonts/MPLUSRounded1c-Regular.ttf
     - family: NotoColorEmoji
       fonts:
         - asset: assets/fonts/NotoColorEmoji-Regular.ttf
