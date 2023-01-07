@@ -28,37 +28,38 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(
-      children: [
-        AutoSizeText(
-          'お客様に価値を届けるオアダイ',
-          textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 300, fontFamily: 'RampartOne'),
-          maxLines: 3,
-        ),
-        _buildCube(),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Center(
-              child: FloatingActionButton(
-                elevation: 0,
-                highlightElevation: 0,
-                hoverElevation: 0,
-                child: Icon(
-                  Icons.keyboard_arrow_up_rounded,
-                  size: 30,
+      body: Stack(
+        children: [
+          AutoSizeText(
+            'お客様に価値を届けるオアダイ',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 300, fontFamily: 'RampartOne'),
+            maxLines: 3,
+          ),
+          _buildCube(),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Center(
+                child: FloatingActionButton(
+                  elevation: 0,
+                  highlightElevation: 0,
+                  hoverElevation: 0,
+                  child: Icon(
+                    Icons.keyboard_arrow_up_rounded,
+                    size: 30,
+                  ),
+                  onPressed: () {
+                    _openBottomSheet();
+                  },
                 ),
-                onPressed: () {
-                  _openBottomSheet();
-                },
               ),
-            ),
-            Gap(36)
-          ],
-        ),
-      ],
-    ));
+              Gap(36)
+            ],
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -85,24 +86,26 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
 
   void _openBottomSheet() {
     showModalBottomSheet(
-        context: context,
-        barrierColor: Colors.black.withOpacity(0.4),
-        isScrollControlled: true,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(32))),
-        builder: (context) {
-          return DraggableScrollableSheet(
-            maxChildSize: 0.9,
-            expand: false,
-            builder: (context, scrollController) {
-              return ListView(
-                padding: EdgeInsets.all(32),
-                controller: scrollController,
-                children: _buildContents(),
-              );
-            },
-          );
-        });
+      context: context,
+      barrierColor: Colors.black.withOpacity(0.4),
+      isScrollControlled: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
+      ),
+      builder: (context) {
+        return DraggableScrollableSheet(
+          maxChildSize: 0.9,
+          expand: false,
+          builder: (context, scrollController) {
+            return ListView(
+              padding: EdgeInsets.all(32),
+              controller: scrollController,
+              children: _buildContents(),
+            );
+          },
+        );
+      },
+    );
   }
 
   List<Widget> _buildContents() {
@@ -110,16 +113,19 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(
-              'teshi04',
-              style: TextStyle(fontSize: 32),
-            ),
-            Text(
-              'Yui Matsuura',
-              style: TextStyle(fontSize: 20, color: Colors.grey[600]),
-            ),
-          ]),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'teshi04',
+                style: TextStyle(fontSize: 32),
+              ),
+              Text(
+                'Yui Matsuura',
+                style: TextStyle(fontSize: 20, color: Colors.grey[600]),
+              ),
+            ],
+          ),
           CircleAvatar(
             backgroundColor: AppColors.primaryColor,
             radius: 50,
@@ -176,37 +182,39 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
   Widget _buildCard() {
     final suzuriUrl = 'https://suzuri.jp/teshi04';
     return Card(
-        clipBehavior: Clip.hardEdge,
-        child: Stack(
-          children: [
-            Tooltip(
-              message: suzuriUrl,
-              child: InkWell(
-                child: Ink.image(
-                  width: 160,
-                  height: 160,
-                  fit: BoxFit.cover,
-                  image: AssetImage('assets/suzuri.png'),
-                  child: InkWell(
-                    onTap: () async {
-                      await launchUrl(Uri.parse(suzuriUrl));
-                    },
-                  ),
+      clipBehavior: Clip.hardEdge,
+      child: Stack(
+        children: [
+          Tooltip(
+            message: suzuriUrl,
+            child: InkWell(
+              child: Ink.image(
+                width: 160,
+                height: 160,
+                fit: BoxFit.cover,
+                image: AssetImage('assets/suzuri.png'),
+                child: InkWell(
+                  onTap: () async {
+                    await launchUrl(Uri.parse(suzuriUrl));
+                  },
                 ),
               ),
             ),
-            Container(
-              margin: EdgeInsets.all(16),
-              child: Text(
-                'ウサ木',
-                style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                    fontFamily: 'MPLUSRounded1c'),
+          ),
+          Container(
+            margin: EdgeInsets.all(16),
+            child: Text(
+              'ウサ木',
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontFamily: 'MPLUSRounded1c',
               ),
-            )
-          ],
-        ));
+            ),
+          )
+        ],
+      ),
+    );
   }
 
   Widget _buildCube() {
