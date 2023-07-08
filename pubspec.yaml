@@ -33,6 +33,7 @@ dependencies:
   auto_size_text: ^3.0.0
 
 dev_dependencies:
+  flutter_lints: ^2.0.2
   flutter_test:
     sdk: flutter
 

@@ -9,6 +9,8 @@ import 'package:url_launcher/url_launcher.dart';
 import 'data/url.dart';
 
 class TopPage extends StatefulWidget {
+  const TopPage({Key? key}) : super(key: key);
+
   @override
   _TopPageState createState() => _TopPageState();
 }
@@ -30,7 +32,7 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
     return Scaffold(
       body: Stack(
         children: [
-          AutoSizeText(
+          const AutoSizeText(
             'お客様に価値を届けるオアダイ',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 300, fontFamily: 'RampartOne'),
@@ -45,7 +47,7 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
                   elevation: 0,
                   highlightElevation: 0,
                   hoverElevation: 0,
-                  child: Icon(
+                  child: const Icon(
                     Icons.keyboard_arrow_up_rounded,
                     size: 30,
                   ),
@@ -54,7 +56,7 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
                   },
                 ),
               ),
-              Gap(36)
+              const Gap(36)
             ],
           ),
         ],
@@ -66,7 +68,7 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     _controller = AnimationController(
-        value: 0.5, duration: Duration(seconds: 10), vsync: this)
+        value: 0.5, duration: const Duration(seconds: 10), vsync: this,)
       ..addListener(() {
         _model.rotation.y = _controller.value * 360;
         _model.updateTransform();
@@ -74,7 +76,7 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
       })
       ..repeat();
 
-    Future.delayed(Duration(milliseconds: 100))
+    Future.delayed(const Duration(milliseconds: 100))
         .then((value) => _openBottomSheet());
   }
 
@@ -90,7 +92,7 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
       barrierColor: Colors.black.withOpacity(0.4),
       isScrollControlled: true,
       showDragHandle: true,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
       ),
       builder: (context) {
@@ -114,7 +116,7 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
 
   Widget _buildContents() {
     return Container(
-      margin: EdgeInsets.all(32),
+      margin: const EdgeInsets.all(32),
       child: Column(
         children: [
           Row(
@@ -123,7 +125,7 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'teshi04',
                     style: TextStyle(fontSize: 32),
                   ),
@@ -142,12 +144,12 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
               )
             ],
           ),
-          Gap(16),
+          const Gap(16),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: items
                 .map((item) => Padding(
-                      padding: EdgeInsets.all(12),
+                      padding: const EdgeInsets.all(12),
                       child: Tooltip(
                         message: item['url'],
                         margin: const EdgeInsets.only(left: 36),
@@ -157,15 +159,15 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
                             children: [
                               Text(
                                 item['emoji'] ?? '',
-                                style: TextStyle(
-                                    fontSize: 18, fontFamily: 'NotoColorEmoji'),
+                                style: const TextStyle(
+                                    fontSize: 18, fontFamily: 'NotoColorEmoji',),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 8,
                               ),
                               Text(
                                 item['title'] ?? '',
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 18,
                                 ),
                               ),
@@ -176,10 +178,10 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
                           },
                         ),
                       ),
-                    ))
+                    ),)
                 .toList(),
           ),
-          Gap(32),
+          const Gap(32),
           Row(
             children: [
               _buildCard(),
@@ -191,7 +193,7 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
   }
 
   Widget _buildCard() {
-    final suzuriUrl = 'https://suzuri.jp/teshi04';
+    const suzuriUrl = 'https://suzuri.jp/teshi04';
     return Card(
       clipBehavior: Clip.hardEdge,
       child: Stack(
@@ -203,7 +205,7 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
                 width: 160,
                 height: 160,
                 fit: BoxFit.cover,
-                image: AssetImage('assets/suzuri.png'),
+                image: const AssetImage('assets/suzuri.png'),
                 child: InkWell(
                   onTap: () async {
                     await launchUrl(Uri.parse(suzuriUrl));
@@ -213,8 +215,8 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
             ),
           ),
           Container(
-            margin: EdgeInsets.all(16),
-            child: Text(
+            margin: const EdgeInsets.all(16),
+            child: const Text(
               'ウサ木',
               style: TextStyle(
                 fontSize: 20,
@@ -229,9 +231,9 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
   }
 
   Widget _buildCube() {
-    final ambient = 0.4;
-    final diffuse = 0.8;
-    final specular = 0.5;
+    const ambient = 0.4;
+    const diffuse = 0.8;
+    const specular = 0.5;
     return Cube(
       onSceneCreated: (Scene scene) {
         _scene = scene;
