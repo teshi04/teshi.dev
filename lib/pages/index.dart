@@ -89,18 +89,22 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
       context: context,
       barrierColor: Colors.black.withOpacity(0.4),
       isScrollControlled: true,
+      showDragHandle: true,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
       ),
       builder: (context) {
         return DraggableScrollableSheet(
-          maxChildSize: 0.9,
           expand: false,
+          snap: true,
+          initialChildSize: 0.9,
+          maxChildSize: 1.0,
           builder: (context, scrollController) {
-            return ListView(
-              padding: EdgeInsets.all(32),
-              controller: scrollController,
-              children: _buildContents(),
+            return Container(
+              child: SingleChildScrollView(
+                controller: scrollController,
+                child: _buildContents(),
+              ),
             );
           },
         );
@@ -108,75 +112,82 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
     );
   }
 
-  List<Widget> _buildContents() {
-    return [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  Widget _buildContents() {
+    return Container(
+      margin: EdgeInsets.all(32),
+      child: Column(
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'teshi04',
-                style: TextStyle(fontSize: 32),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'teshi04',
+                    style: TextStyle(fontSize: 32),
+                  ),
+                  Text(
+                    'Yui Matsuura',
+                    style: TextStyle(fontSize: 20, color: Colors.grey[600]),
+                  ),
+                ],
               ),
-              Text(
-                'Yui Matsuura',
-                style: TextStyle(fontSize: 20, color: Colors.grey[600]),
-              ),
+              CircleAvatar(
+                backgroundColor: AppColors.primaryColor,
+                radius: 50,
+                child: SvgPicture.asset(
+                  'assets/nekouo.svg',
+                ),
+              )
             ],
           ),
-          CircleAvatar(
-            backgroundColor: AppColors.primaryColor,
-            radius: 50,
-            child: SvgPicture.asset(
-              'assets/nekouo.svg',
-            ),
-          )
+          Gap(16),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: items
+                .map((item) => Padding(
+                      padding: EdgeInsets.all(12),
+                      child: Tooltip(
+                        message: item['url'],
+                        margin: const EdgeInsets.only(left: 36),
+                        verticalOffset: 11,
+                        child: InkWell(
+                          child: Row(
+                            children: [
+                              Text(
+                                item['emoji'] ?? '',
+                                style: TextStyle(
+                                    fontSize: 18, fontFamily: 'NotoColorEmoji'),
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Text(
+                                item['title'] ?? '',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ],
+                          ),
+                          onTap: () async {
+                            await launchUrl(Uri.parse(item['url'] ?? ''));
+                          },
+                        ),
+                      ),
+                    ))
+                .toList(),
+          ),
+          Gap(32),
+          Row(
+            children: [
+              _buildCard(),
+            ],
+          ),
         ],
       ),
-      Gap(16),
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: items
-            .map((item) => Padding(
-                  padding: EdgeInsets.all(12),
-                  child: Tooltip(
-                    message: item['url'],
-                    margin: const EdgeInsets.only(left: 36),
-                    verticalOffset: 11,
-                    child: InkWell(
-                      child: Row(
-                        children: [
-                          Text(
-                            item['emoji'] ?? '',
-                            style: TextStyle(
-                                fontSize: 18, fontFamily: 'NotoColorEmoji'),
-                          ),
-                          SizedBox(
-                            width: 8,
-                          ),
-                          Text(
-                            item['title'] ?? '',
-                            style: TextStyle(
-                              fontSize: 18,
-                            ),
-                          ),
-                        ],
-                      ),
-                      onTap: () async {
-                        await launchUrl(Uri.parse(item['url'] ?? ''));
-                      },
-                    ),
-                  ),
-                ))
-            .toList(),
-      ),
-      Gap(32),
-      Row(children: [
-        _buildCard(),
-      ])
-    ];
+    );
   }
 
   Widget _buildCard() {
