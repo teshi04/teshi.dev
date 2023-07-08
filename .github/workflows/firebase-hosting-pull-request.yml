@@ -2,7 +2,7 @@
 # https://github.com/firebase/firebase-tools
 
 name: Deploy to Firebase Hosting on PR
-'on': pull_request
+"on": pull_request
 jobs:
   build_and_preview:
     runs-on: ubuntu-latest
@@ -11,6 +11,9 @@ jobs:
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.10.4"
+          channel: "stable"
 
       - name: Install dependencies
         run: flutter pub get
@@ -21,6 +24,6 @@ jobs:
       - name: Deploy
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TESHI04_A938F }}'
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_TESHI04_A938F }}"
           projectId: teshi04-a938f
