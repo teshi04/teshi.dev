@@ -68,7 +68,10 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     _controller = AnimationController(
-        value: 0.5, duration: const Duration(seconds: 10), vsync: this,)
+      value: 0.5,
+      duration: const Duration(seconds: 10),
+      vsync: this,
+    )
       ..addListener(() {
         _model.rotation.y = _controller.value * 360;
         _model.updateTransform();
@@ -102,11 +105,9 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
           initialChildSize: 0.9,
           maxChildSize: 1.0,
           builder: (context, scrollController) {
-            return Container(
-              child: SingleChildScrollView(
-                controller: scrollController,
-                child: _buildContents(),
-              ),
+            return SingleChildScrollView(
+              controller: scrollController,
+              child: _buildContents(),
             );
           },
         );
@@ -137,7 +138,7 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
               ),
               CircleAvatar(
                 backgroundColor: AppColors.primaryColor,
-                radius: 50,
+                radius: 64,
                 child: SvgPicture.asset(
                   'assets/nekouo.svg',
                 ),
@@ -148,37 +149,46 @@ class _TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: items
-                .map((item) => Padding(
-                      padding: const EdgeInsets.all(12),
-                      child: Tooltip(
-                        message: item['url'],
-                        margin: const EdgeInsets.only(left: 36),
-                        verticalOffset: 11,
-                        child: InkWell(
-                          child: Row(
-                            children: [
-                              Text(
-                                item['emoji'] ?? '',
-                                style: const TextStyle(
-                                    fontSize: 18, fontFamily: 'NotoColorEmoji',),
-                              ),
-                              const SizedBox(
-                                width: 8,
-                              ),
-                              Text(
-                                item['title'] ?? '',
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                ),
-                              ),
-                            ],
+                .map(
+                  (item) => Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Tooltip(
+                      message: item['url'],
+                      margin: const EdgeInsets.only(left: 36),
+                      verticalOffset: 11,
+                      child: FilledButton.tonal(
+                        style: FilledButton.styleFrom(
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(32),
                           ),
-                          onTap: () async {
-                            await launchUrl(Uri.parse(item['url'] ?? ''));
-                          },
+                          padding: const EdgeInsets.all(16),
+                        ),
+                        onPressed: () async {
+                          await launchUrl(Uri.parse(item['url'] ?? ''));
+                        },
+                        child: Row(
+                          children: [
+                            Text(
+                              item['emoji'] ?? '',
+                              style: const TextStyle(
+                                  fontSize: 18, fontFamily: 'NotoColorEmoji'),
+                            ),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            Text(
+                              item['title'] ?? '',
+                              style: const TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ),)
+                    ),
+                  ),
+                )
                 .toList(),
           ),
           const Gap(32),
