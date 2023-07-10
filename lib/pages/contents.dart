@@ -46,7 +46,7 @@ class Contents extends StatelessWidget {
                   (item) => Padding(
                     padding: const EdgeInsets.all(16),
                     child: Tooltip(
-                      message: item['url'],
+                      message: item.url,
                       verticalOffset: 11,
                       child: FilledButton.tonal(
                         style: FilledButton.styleFrom(
@@ -57,12 +57,12 @@ class Contents extends StatelessWidget {
                           padding: const EdgeInsets.all(16),
                         ),
                         onPressed: () async {
-                          await launchUrl(Uri.parse(item['url'] ?? ''));
+                          await launchUrl(Uri.parse(item.url));
                         },
                         child: Row(
                           children: [
                             Text(
-                              item['emoji'] ?? '',
+                              item.emoji,
                               style: const TextStyle(
                                 fontSize: 18,
                                 fontFamily: 'NotoColorEmoji',
@@ -70,7 +70,7 @@ class Contents extends StatelessWidget {
                             ),
                             const SizedBox(width: 8),
                             Text(
-                              item['title'] ?? '',
+                              item.title,
                               style: textTheme.titleMedium,
                             ),
                           ],
