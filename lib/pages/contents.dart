@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:gap/gap.dart';
 import 'package:teshi_dev/app_color.dart';
 import 'package:teshi_dev/pages/data/url.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -39,7 +38,7 @@ class Contents extends StatelessWidget {
               )
             ],
           ),
-          const Gap(32),
+          const SizedBox(height: 32),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: items
@@ -82,7 +81,7 @@ class Contents extends StatelessWidget {
                 )
                 .toList(),
           ),
-          const Gap(32),
+          const SizedBox(height: 32),
           Row(
             children: [
               _buildCard(context),
