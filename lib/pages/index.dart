@@ -38,9 +38,8 @@ class TopPageState extends State<TopPage> with SingleTickerProviderStateMixin {
             alignment: Alignment.bottomCenter,
             padding: const EdgeInsets.only(bottom: 32),
             child: FloatingActionButton(
-              elevation: 0,
-              highlightElevation: 0,
-              hoverElevation: 0,
+              elevation: 2,
+              hoverElevation: 2,
               child: const Icon(
                 Icons.keyboard_arrow_up_rounded,
                 size: 36,

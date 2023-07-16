@@ -44,7 +44,10 @@ class Contents extends StatelessWidget {
             children: items
                 .map(
                   (item) => Padding(
-                    padding: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 12,
+                      horizontal: 0,
+                    ),
                     child: Tooltip(
                       message: item.url,
                       verticalOffset: 12,
@@ -54,7 +57,7 @@ class Contents extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(32),
                           ),
-                          padding: const EdgeInsets.all(16),
+                          padding: const EdgeInsets.all(20),
                         ),
                         onPressed: () async {
                           await launchUrl(Uri.parse(item.url));
@@ -63,12 +66,12 @@ class Contents extends StatelessWidget {
                           children: [
                             Text(
                               item.emoji,
-                              style: textTheme.titleMedium,
+                              style: textTheme.titleLarge,
                             ),
-                            const SizedBox(width: 8),
+                            const SizedBox(width: 12),
                             Text(
                               item.title,
-                              style: textTheme.titleMedium,
+                              style: textTheme.titleLarge,
                             ),
                           ],
                         ),
@@ -112,11 +115,11 @@ class Contents extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            margin: const EdgeInsets.all(16),
+          Padding(
+            padding: const EdgeInsets.all(16),
             child: Text(
               'ウサ木',
-              style: textTheme.titleMedium?.copyWith(color: Colors.white),
+              style: textTheme.titleLarge?.copyWith(color: Colors.white),
             ),
           )
         ],

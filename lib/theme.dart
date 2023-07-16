@@ -6,10 +6,7 @@ class AppTheme {
     return ThemeData(
       scaffoldBackgroundColor: AppColors.primaryColor,
       colorSchemeSeed: AppColors.primaryColor,
-      cardTheme: CardTheme(
-        elevation: 0,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      ),
+      brightness: Brightness.light,
       fontFamily: 'MPLUSRounded1c',
       useMaterial3: true,
     );
