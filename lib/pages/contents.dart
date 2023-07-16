@@ -47,7 +47,7 @@ class Contents extends StatelessWidget {
                     padding: const EdgeInsets.all(16),
                     child: Tooltip(
                       message: item.url,
-                      verticalOffset: 11,
+                      verticalOffset: 12,
                       child: FilledButton.tonal(
                         style: FilledButton.styleFrom(
                           elevation: 0,
@@ -63,10 +63,7 @@ class Contents extends StatelessWidget {
                           children: [
                             Text(
                               item.emoji,
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontFamily: 'NotoColorEmoji',
-                              ),
+                              style: textTheme.titleMedium,
                             ),
                             const SizedBox(width: 8),
                             Text(
