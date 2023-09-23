@@ -55,7 +55,7 @@ class IntroductionWidget extends StatelessWidget {
           child: SvgPicture.asset(
             'assets/nekouo.svg',
           ),
-        )
+        ),
       ],
     );
   }
@@ -147,7 +147,7 @@ class CardWidget extends StatelessWidget {
               'ウサ木',
               style: textTheme.titleLarge?.copyWith(color: Colors.white),
             ),
-          )
+          ),
         ],
       ),
     );
