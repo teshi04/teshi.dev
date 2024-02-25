@@ -32,7 +32,6 @@
 /build/
 
 # Web related
-lib/generated_plugin_registrant.dart
 
 # Symbolication related
 app.*.symbols
@@ -46,4 +45,6 @@ app.*.map.json
 /android/app/release
 
 .vscode
-.fvm/flutter_sdk
+
+# FVM Version Cache
+.fvm/
